@@ -1,0 +1,34 @@
+.Studentheading {
+  color: #10266b;
+  font: 50 2.5rem "Josefin-Sans-light";
+  border-bottom: 2px solid rgba(0, 0, 0, 0.788);
+  width: 80%;
+  margin: auto;
+  margin-top: 3vmax !important;
+  margin-bottom: 2vmax !important;
+  line-height: 1.2;
+}
+
+.TrainerContainer {
+  width: 80%;
+  border: 2px solid;
+  margin: auto;
+}
+
+.Trainer {
+  width: 96%;
+  background-color: #f4f4f4 !important;
+  color: #444 !important;
+  padding: 18px;
+  text-align: left;
+  border: none;
+}
+
+.Trainer > select {
+  width: 96%;
+  background-color: #f4f4f4 !important;
+  color: #444 !important;
+  padding: 18px;
+  text-align: left;
+  border: none;
+}

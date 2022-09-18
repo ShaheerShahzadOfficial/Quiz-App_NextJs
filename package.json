@@ -1,5 +1,5 @@
 {
-  "name": "app-name",
+  "name": "quiz-app",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,9 +9,25 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emotion/react": "^11.10.4",
+    "@emotion/server": "^11.10.0",
+    "@emotion/styled": "^11.10.4",
+    "@mui/icons-material": "^5.10.3",
+    "@mui/material": "^5.10.5",
+    "@mui/styled-engine-sc": "^5.10.3",
+    "axios": "^0.27.2",
+    "mongoose": "^6.6.1",
     "next": "12.3.0",
+    "npm": "^8.19.2",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "react-redux": "^8.0.2",
+    "redux": "^4.2.0",
+    "redux-thunk": "^2.4.1",
+    "redux-thunks": "^1.0.0",
+    "styled-components": "^5.3.5",
+    "sweetalert": "^2.1.2",
+    "uninstall": "^0.0.0"
   },
   "devDependencies": {
     "eslint": "8.23.1",

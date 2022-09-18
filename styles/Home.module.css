@@ -3,13 +3,34 @@
 }
 
 .main {
-  min-height: 100vh;
-  padding: 4rem 0;
+  /* min-height: 10vh; */
+  padding-top: 10vh !important;
+  /* padding-bottom: 10vh !important; */
+  /* padding:  0; */
+  height: 90vh;
   flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.main  button{
+  margin-bottom: 5vmax;
+  cursor: pointer;
+  background-color: #0070f3;
+  border: 1px solid #0070f3;
+  color: white;
+  border-radius: 0;
+  padding: 1vmax;
+  transition: all 0.5s;
+  width: 12vmax;
+  font: 800 2vmax "Roboto";
+}
+
+.main button:hover {
+  background-color: #ffffff;
+  color: #0070f3;
 }
 
 .footer {
@@ -21,11 +42,14 @@
   align-items: center;
 }
 
-.footer a {
+.footer {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-grow: 1;
+  color: #0070f3;
+ font-weight: 600;
+ font-size: larger;
 }
 
 .title a {
@@ -76,20 +100,24 @@
 .card {
   margin: 1rem;
   padding: 1.5rem;
-  text-align: left;
+  text-align: center;
   color: inherit;
   text-decoration: none;
-  border: 1px solid #eaeaea;
+  /* border: 1px solid #eaeaea; */
   border-radius: 10px;
   transition: color 0.15s ease, border-color 0.15s ease;
-  max-width: 300px;
+  max-width: 100%;
+  height: 85vmin;
+  color: #0070f3;
+
+
 }
 
 .card:hover,
 .card:focus,
 .card:active {
-  color: #0070f3;
-  border-color: #0070f3;
+  color: #00aef3;
+  /* border-color: #0070f3; */
 }
 
 .card h2 {
@@ -121,7 +149,7 @@
     border-color: #222;
   }
   .code {
-    background: #111;
+    background: rgb(255, 255, 255);
   }
   .logo img {
     filter: invert(1);
