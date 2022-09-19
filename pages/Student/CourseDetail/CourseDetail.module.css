@@ -11,7 +11,7 @@
 
 .TrainerContainer {
   width: 80%;
-  border: 2px solid;
+  /* border: 2px solid; */
   margin: auto;
 }
 
@@ -22,6 +22,28 @@
   padding: 18px;
   text-align: left;
   border: none;
+    border: 1px solid;
+
+}
+.Batches{
+  width: 96%;
+  background-color: #ffffff !important;
+  color: #444 !important;
+  padding: 8px;
+  text-align: left;
+  border: none;
+    border: 1px solid;
+}
+.Batches div{
+  width: 90%;
+  background-color: #f4f4f4 !important;
+  color: #444 !important;
+  padding: 5px;
+  text-align: left;
+  border: none;
+    border: 1px solid;
+    margin: auto;
+    margin-bottom: 10px!important;
 }
 
 .Trainer > select {
