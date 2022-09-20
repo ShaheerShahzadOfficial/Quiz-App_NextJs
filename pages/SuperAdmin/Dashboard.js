@@ -4,6 +4,7 @@ import { DataGrid } from '@mui/x-data-grid';
 import { Box, Button, IconButton, Modal, Typography } from '@mui/material';
 import { Delete } from '@mui/icons-material';
 import EditIcon from '@mui/icons-material/Edit';
+import Head from "next/head";
 const SuperAdminDashboard = () => {
   const [open, setOpen] = useState(false)
   const [Name, setName] = useState("")
@@ -74,6 +75,11 @@ const SuperAdminDashboard = () => {
 
   return (
     <div>
+
+      <Head>
+        <title>Super Admin Dashboard</title>
+        <meta name="description" content="Created by Shaheer Shahzad" />
+      </Head>
 
       <h2 style={{ textAlign: "center", margin: "5vmax" }}> Welcome to Super Admin DashBoard </h2>
 

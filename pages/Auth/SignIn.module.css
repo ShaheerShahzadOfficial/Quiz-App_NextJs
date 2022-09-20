@@ -173,3 +173,80 @@ font: bolder 1.3vmax "Roboto";
     transform: translate(0%, 200%)
 
 }
+
+@media only screen and (max-width: 750px) {   
+  .mainDiv{
+      width: 95%;
+      grid-template-columns: 1.5fr 1fr;
+      height: auto;
+      min-height: 100vmin;
+  }
+  .SignUpFormContainer{
+      width: 80%;
+      height: 70vmin;
+  }
+  .left > div{
+      top: 50%;
+      transform: translate(0%, 150%)
+  
+  }
+  .btn > button{
+      width: 10vmax !important;
+  }
+
+  .SignUpFormContainer > div {
+      margin: auto;
+      width: 90%;
+    }
+
+}
+
+@media only screen and (max-width: 500px) {
+  .mainDiv{
+      width: 95%;
+      margin-top: 10vmin !important;
+      grid-template-columns: 1.5fr;
+      height: auto;
+      min-height: 120vmin;
+  }
+  .SignUpFormContainer{
+      width: 100%;
+      height: 80vmin;
+  }
+  .SignUpFormContainer > h2 {
+      padding-top: -4% !important;
+  }
+  .left {
+      display:none;
+  }
+
+  .btn > button{
+      width: 15vmax !important;
+  }
+
+  .SignUpFormContainer > div > input {
+    padding: 2vmax 4vmax;
+    padding-right: 1vmax;
+    font-size: larger;
+  }
+  .SignUpFormContainer > div > svg {
+    position: absolute;
+    font-size: 2vmax;
+    margin-top: 2vmax;
+    margin-left: 1vmax;
+    margin-bottom: 1vmax;
+    align-items: center;
+    color: #780206;
+  }
+  
+  .Redirect > p {
+    color: #780206 !important;
+    font: bolder 2vmax "Roboto";
+    }
+    
+    .Redirect > p > span {
+      margin-left: 0.5vmax;
+      color:  #061161;
+      font: bolder 2vmax "Roboto";
+    }
+}

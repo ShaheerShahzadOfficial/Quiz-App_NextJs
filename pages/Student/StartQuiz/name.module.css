@@ -1,0 +1,12 @@
+.OptionsContainer{
+    display: flex;
+    flex-wrap: wrap;
+    width: 40%;
+    margin: auto;
+    
+}
+
+.OptionsContainer > button{
+    margin: 2vmax auto;
+    width: 12vmax;
+}

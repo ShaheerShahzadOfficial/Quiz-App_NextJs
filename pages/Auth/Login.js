@@ -5,6 +5,8 @@ import { useState } from 'react';
 import swal from "sweetalert";
 import { useRouter } from 'next/router'
 import Head from "next/head";
+import axios from "axios";
+import { getCookies, setCookie, deleteCookie } from 'cookies-next';
 
 const SignIn = () => {
     const [Password, setPassword] = useState("")
@@ -15,7 +17,18 @@ const SignIn = () => {
 
     function login() {
         if(Password && Email){
-
+            axios.post("/api/login",{email:Email,password:Password}).then((result) => {
+                // console.log(result?.data?.user)
+                
+                setCookie("authToken",result?.data?.token,{expires: new Date(
+                    Date.now() + 2 * 24 * 60 * 60 * 1000),secure:true})     
+                    swal({
+                    text:result?.data?.msg
+                })
+            }).catch((err) => {
+                swal({text:  err?.response?.data?.msg,icon:"error"})
+                // console.log(err?.response?.data)
+            });
         }else{
          swal({
             text:"Fill All The Field",

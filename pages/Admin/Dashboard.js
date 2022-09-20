@@ -6,6 +6,7 @@ import { Box } from '@mui/system';
 import CheckIcon from '@mui/icons-material/Check';
 import { Delete } from '@mui/icons-material';
 import { DataGrid } from '@mui/x-data-grid';
+import Head from "next/head";
 const DashBoard = () => {
   const [open, setOpen] = useState(false)
 const [Question, setQuestion] = useState("")
@@ -91,7 +92,10 @@ const columns = [
   return (
 
 <div>
-
+<Head>
+        <title>Admin Dashboard</title>
+        <meta name="description" content="Created by Shaheer Shahzad" />
+      </Head>
 <div className={style.NavContainer}>
 <div>
 <h3>Admin DashBoard</h3>
