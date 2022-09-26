@@ -22,7 +22,7 @@ export default function Home() {
 <h1> Welcome To  Quiz App  </h1>
 <h2>The Web where you can create quiz and Answer your quiz</h2>
 <h3>Please Login To Continue</h3>
-<br /><br /><br /><br />
+<br />
 
 <Link href={"/Auth/Login"}>
 <button>Login</button>
@@ -31,6 +31,8 @@ export default function Home() {
 </div>
 
 </main>
+
+<br /><br />
 
       <footer className={styles.footer}>
           CopyRight @ Shaheer Shahzad

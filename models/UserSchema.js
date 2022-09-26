@@ -13,6 +13,17 @@ const userSchema = new mongoose.Schema({
     name: {
         type: String,
         required: true
+    },role: {
+        type: String,
+        default: "Student"          
+    },
+    AlowedToAttemptQuiz: {
+        type: Boolean,
+        default: false          
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now()
     }
 })
 

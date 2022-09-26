@@ -17,11 +17,10 @@ const SignIn = () => {
 
     function login() {
         if(Password && Email){
-            axios.post("/api/login",{email:Email,password:Password}).then((result) => {
-                // console.log(result?.data?.user)
-                
-                setCookie("authToken",result?.data?.token,{expires: new Date(
-                    Date.now() + 2 * 24 * 60 * 60 * 1000),secure:true})     
+            axios.post("/api/login",{email:Email,password:Password},{withCredentials:true,headers:{"Content-Type":"application/json"}}).then((result) => {
+             
+                // setCookie("authToken",result?.data?.token,{expires: new Date(
+                //     Date.now() + 2 * 24 * 60 * 60 * 1000),secure:true})     
                     swal({
                     text:result?.data?.msg
                 })

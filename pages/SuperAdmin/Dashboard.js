@@ -5,15 +5,19 @@ import { Box, Button, IconButton, Modal, Typography } from '@mui/material';
 import { Delete } from '@mui/icons-material';
 import EditIcon from '@mui/icons-material/Edit';
 import Head from "next/head";
+import axios from "axios";
+import swal from "sweetalert";
 const SuperAdminDashboard = () => {
   const [open, setOpen] = useState(false)
   const [Name, setName] = useState("")
   const [Email, setEmail] = useState("")
-  const [Batch, setBatch] = useState("")
   const [role, setRole] = useState("")
   const [Allowed, setAllowed] = useState("")
-
+  const [Id, setId] = useState("")
+  const [userData, setuserData] = useState([])
+  
   const handleClose = () => setOpen(false)
+
   const styles = {
     position: 'absolute',
     top: '50%',
@@ -28,6 +32,13 @@ const SuperAdminDashboard = () => {
   };
 
 
+useEffect(()=>{
+axios.get("/api/getAllUser").then((result) => {
+   setuserData(result?.data?.user)
+   console.log(result?.data?.user)
+}).catch((err) => {
+  console.log(err?.response?.data)
+});},[])
 
 
   const columns = [{ field: "id", headerName: "User Id", minWidth: 300, flex: 0.5 },
@@ -35,7 +46,13 @@ const SuperAdminDashboard = () => {
     field: "role",
     headerName: "UserRole",
     minWidth: 150,
-    flex: 0.5,
+    flex: 0.3,
+  },
+  {
+    field: "email",
+    headerName: "Email",
+    minWidth: 150,
+    flex: 0.3,
   },
   {
     field: "name",
@@ -43,7 +60,12 @@ const SuperAdminDashboard = () => {
     minWidth: 150,
     flex: 0.3,
   },
-
+  {
+    field: "allowed",
+    headerName: "Allowed To Quiz",
+    minWidth: 150,
+    flex: 0.3,
+  },
   {
     field: "action",
     headerName: "Actions",
@@ -52,9 +74,13 @@ const SuperAdminDashboard = () => {
     sortable: false,
     renderCell: (params) => (
       <IconButton
-        onClick={() => setOpen(true)
-          // alert(params.getValue(params.id, "id"))
-        }>
+        onClick={() =>{ setOpen(true)  
+        setId(params.getValue(params.id, "id"))
+        setEmail(params.getValue(params.id, "email"))
+        setName(params.getValue(params.id, "name"))
+        setAllowed(params.getValue(params.id, "allowed")) 
+        setRole(params.getValue(params.id, "role"))
+        } }>
         <EditIcon />
       </IconButton>
     )
@@ -64,14 +90,44 @@ const SuperAdminDashboard = () => {
   const rows = [];
 
 
-  //     user && user?.Users?.map((item,i)=>(
+userData ? userData?.forEach(item => {
   rows.push({
-    id: "item._id",
-    role: "item.role",
-    name: "item.name"
+    id: item._id,
+    role: item.role,
+    name: item.name,
+    email:item.email,
+    allowed:item.AlowedToAttemptQuiz
   })
-  // )
-  //      ) 
+}) :   
+rows.push({
+  id: "item._id",
+  role: "item.role",
+  name: "item.name",
+  email:"item.email",
+  AlowedToAttemptQuiz:"AlowedToAttemptQuiz"
+})
+
+
+
+
+const updateUser = () =>{
+  axios.put(`/api/updateUser/${Id}`,{
+    AlowedToAttemptQuiz:Allowed,role
+  }).then((result) => {
+    console.log(result?.data?.msg)
+    setOpen(false)
+    swal({text:result?.data?.msg})
+  }).catch((err) => {
+    console.log(err?.response)
+  });
+}
+
+
+
+console.log("userData",userData)
+
+
+
 
   return (
     <div>
@@ -91,13 +147,12 @@ const SuperAdminDashboard = () => {
           disableSelectionOnClick
           className="Student Dashboard"
           autoHeight
-        />
+          // getRowId={(row) =>console.log(row.id)}
+          />
       </div>
 
       <br />
       <div style={{ width: "90%", margin: "auto" }}>
-
-        {/* <Button  variant="contained" color="success" onClick={ ()=> { setOpen(true) }}>Save</Button> */}
 
       </div>
       <div>
@@ -115,29 +170,23 @@ const SuperAdminDashboard = () => {
 
             <br />
 
-            <input placeholder='Email' className={style.QuizQuestion} value={Email} onChange={e => setEmail(e.target.value)} />
+            {/* <input placeholder='Email' className={style.QuizQuestion} value={Email} onChange={e => setEmail(e.target.value)} /> */}
 
             <div className={style.answerContainer}>
+            <input placeholder='Email' value={Email} onChange={e => setEmail(e.target.value)} />
+
               <input placeholder='Name' value={Name} onChange={e => setName(e.target.value)} />
-              <input placeholder='Batch' value={Batch} onChange={e => setBatch(e.target.value)} />
               <input placeholder='Allowed to Attempt Quiz' value={Allowed} onChange={e => setAllowed(e.target.value)} />
               <input placeholder='Role' value={role} onChange={e => setRole(e.target.value)} />
             </div>
 
-            {/* <input placeholder='Batch Number' className='QuizQuestion' type={"number"} value={Batch} onChange={e => setBatch(e.target.value)} /> */}
-
-
-
-
-            {/* <Typography id="modal-modal-title" variant="p" component="p">
-Answer</Typography>  */}
 
             <br />
 
 
 
             <Button onClick={() => { setOpen(false) }} variant="contained" color="error">Cancel</Button>
-            <Button variant="contained" color="secondary">Update</Button>
+            <Button variant="contained" color="secondary" onClick={updateUser}>Update</Button>
 
 
           </Box>

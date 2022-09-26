@@ -18,7 +18,7 @@ const SignUp = () => {
 
 
 function signup() {
-    // if(Name && Password && Email){
+    if(Name && Password && Email){
       
 
 // if (error?.msg === " User Already Exist with this Email ") {
@@ -28,20 +28,25 @@ function signup() {
 //      })   
 // }
 axios.post("/api/register",{name:Name,email:Email,password:Password}).then((result) => {
-    console.log(result?.data?.user)
+    console.log(result?.data?.msg)
+
+    swal({text:result?.data?.msg,icon:"success", buttons:"Ok!"})
+
 }).catch((err) => {
     console.log(err?.response?.data)
+    swal({text:err?.response?.data?.msg,icon:"error"})
+
 });
 
 
 
-    // }else{
-    //  swal({
-    //     text:"Fill All The Field",
-    //     icon:"error",
-    //     buttons:"Sorry!",
-    //  })
-    // }
+    }else{
+     swal({
+        text:"Fill All The Field",
+        icon:"error",
+        buttons:"Sorry!",
+     })
+    }
 }
 
 

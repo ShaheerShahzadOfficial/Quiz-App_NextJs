@@ -1,3 +1,10 @@
+.NavBar{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+
 .OptionsContainer{
     display: flex;
     flex-wrap: wrap;
@@ -8,5 +15,12 @@
 
 .OptionsContainer > button{
     margin: 2vmax auto;
-    width: 12vmax;
+    width: 13vmax;
+}
+
+
+@media only screen and (max-width: 420px) {   
+    .MuiPaper-root .MuiPaper-elevation .MuiPaper-rounded .MuiPaper-elevation10 .css-v8x2nv-MuiPaper-root{
+       width: 80%;
+    }
 }

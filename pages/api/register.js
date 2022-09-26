@@ -24,7 +24,8 @@ export default async function register(req,res){
  stringToHash(req.body.password).then( async hash => {
    req.body.password = hash
    await User.create(req.body).then((result) => {  
-      res.status(201).json({"user":result})
+      res.status(201).json({"msg":"Registeration Successfully",
+      "user":result})
    }).catch((err) => {
       res.status(500).json({"msg":err})
    });

@@ -68,4 +68,6 @@ padding: 1vmax;
 }
 
 .option{
-color: black;}
+color: black;
+background-color: transparent;
+}
