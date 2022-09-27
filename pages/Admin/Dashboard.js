@@ -4,10 +4,11 @@ import AddIcon from '@mui/icons-material/Add';
 import { Button, IconButton, Modal, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import CheckIcon from '@mui/icons-material/Check';
-import { Delete, Edit } from '@mui/icons-material';
+import { DeleteForever } from '@mui/icons-material';
 import { DataGrid } from '@mui/x-data-grid';
 import Head from "next/head";
 import axios from "axios";
+import swal from "sweetalert";
 const DashBoard = () => {
   const [open, setOpen] = useState(false)
   const [Question, setQuestion] = useState("")
@@ -26,7 +27,6 @@ const DashBoard = () => {
   useEffect(() => {
 
     axios.get("http://localhost:3000/api/QuizRoute").then((result) => {
-      console.log(result?.data?.quiz)
       setQuiz(result?.data?.quiz)
     }).catch((err) => {
       console.log(err?.response?.data)
@@ -50,7 +50,7 @@ const DashBoard = () => {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: "90%",
+    width: "95%",
     bgcolor: 'rgb(0, 2, 109)',
     border: '2px solid transparent',
     boxShadow: 24,
@@ -60,14 +60,26 @@ const DashBoard = () => {
 
 
   const addQuiz = () => {
+
+if (Question && Answer1 && Answer2 && Answer3 && Answer4 && CorrectAnswer && Batch && Time && category) {
     axios.post("http://localhost:3000/api/QuizRoute", {
       "question": Question, "option": [Answer1, Answer2, Answer3, Answer4],
       "CorrectAnswer": CorrectAnswer, "Batch": Batch, "course": category, "time": Time
     }).then((result) => {
-      console.log(result.data)
-    }).catch((err) => {
-      console.log(err.response.data)
+        swal({text:"Question Has been Created"})
+        setOpen(false)
+      axios.get("http://localhost:3000/api/QuizRoute").then((result) => {
+      setQuiz(result?.data?.quiz)
     })
+    }).catch((err) => {
+      console.log(err?.response?.data)
+    })
+
+  }else{
+    swal({text:"Fill All The Field"})
+  }
+  
+  
   }
 
 
@@ -101,8 +113,17 @@ const DashBoard = () => {
       flex: 0.3,
       sortable: false,
       renderCell: (params) => (
-        <IconButton onClick={() => alert(params.getValue(params.id, "id"))}>
-          <Edit />
+        <IconButton onClick={() =>{ 
+          axios.delete(`/api/quizQuestion/${params.getValue(params.id, "id")}`).then((result) => {
+            swal({text:result?.data?.msg})
+            axios.get("http://localhost:3000/api/QuizRoute").then((result) => {
+              setQuiz(result?.data?.quiz)
+            })
+          }).catch((err) => {
+            console.log(err?.response?.data)
+          });
+        }}>
+          <DeleteForever />
         </IconButton>
       )
     },

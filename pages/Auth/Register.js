@@ -31,7 +31,7 @@ axios.post("/api/register",{name:Name,email:Email,password:Password}).then((resu
     console.log(result?.data?.msg)
 
     swal({text:result?.data?.msg,icon:"success", buttons:"Ok!"})
-
+    router.push("/Auth/Login")
 }).catch((err) => {
     console.log(err?.response?.data)
     swal({text:err?.response?.data?.msg,icon:"error"})

@@ -13,7 +13,7 @@ const Home = () => {
         // }
         window.addEventListener("beforeunload", async function (e) {
             var confirmationMessage = "\o/";
-          await axios.post("/api/logout",{withCredentials:true,headers:{"Content-Type":"application/json"}}).then((result) => {
+            await axios.post("/api/logout", { withCredentials: true, headers: { "Content-Type": "application/json" } }).then((result) => {
                 console.log(result?.data?.msg)
             }).catch((err) => {
                 console.log(err?.response?.data);
@@ -35,7 +35,7 @@ const Home = () => {
 
     return (
 
-        <div>
+        <div dis>
 
             <Head>
                 <title>Student Home</title>
@@ -55,10 +55,10 @@ const Home = () => {
                         <div key={item.Name}>
 
                             <div style={{ width: "90%", margin: "auto" }}>
-                                <h4 style={{ fontSize: "1.5rem", marginTop: 0, marginBottom: "0.5rem" }}>{item.Name}</h4>
-                                <h6 style={{ color: "#10266b", fontSize: "1.3rem", fontWeight: 500, lineHeight: 1 }}>{item.Trainers} Trainers</h6>
+                                <h4 style={{ fontSize: "2.5vmax", marginTop: 0, marginBottom: "0.5rem" }}>{item.Name}</h4>
+                                <h6 style={{ color: "#10266b", fontSize: "2vmax", fontWeight: 500, lineHeight: 1 }}>{item.Trainers} Trainers</h6>
                                 <Link href={`/Student/CourseDetail/${item.Name}`}>
-                                    <button style={{ color: "#10266b", width: "100%", border: "2px solid #10266b", padding: "1vmax", margin: "auto", backgroundColor: "white", fontSize: "1.4rem", fontWeight: 200 }}>Join Test</button>
+                                    <button style={{ color: "#10266b", width: "100%", border: "2px solid #10266b", padding: "1vmax", margin: "auto", backgroundColor: "white", fontSize: "2vmax", fontWeight: 200 }}>Join Test</button>
                                 </Link>
                             </div>
 

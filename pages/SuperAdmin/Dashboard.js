@@ -2,7 +2,7 @@ import style from "../Admin/dashboard.module.css"
 import React, { useEffect, useState } from 'react'
 import { DataGrid } from '@mui/x-data-grid';
 import { Box, Button, IconButton, Modal, Typography } from '@mui/material';
-import { Delete } from '@mui/icons-material';
+import { Delete, DeleteForever } from '@mui/icons-material';
 import EditIcon from '@mui/icons-material/Edit';
 import Head from "next/head";
 import axios from "axios";
@@ -73,6 +73,7 @@ axios.get("/api/getAllUser").then((result) => {
     flex: 0.3,
     sortable: false,
     renderCell: (params) => (
+      <>
       <IconButton
         onClick={() =>{ setOpen(true)  
         setId(params.getValue(params.id, "id"))
@@ -83,6 +84,21 @@ axios.get("/api/getAllUser").then((result) => {
         } }>
         <EditIcon />
       </IconButton>
+
+      <IconButton onClick={()=>{
+          axios.delete(`/api/updateUser/${params.getValue(params.id, "id")}`).then((result) => {
+            console.log(result?.data?.msg)
+            swal({text:result?.data?.msg})
+            axios.get("/api/getAllUser").then((result) => {
+              setuserData(result?.data?.user)
+           })
+          }).catch((err) => {
+            console.log(err?.response)
+          });
+      }} >
+<DeleteForever/>
+      </IconButton>
+      </>
     )
   },
   ];
@@ -117,6 +133,11 @@ const updateUser = () =>{
     console.log(result?.data?.msg)
     setOpen(false)
     swal({text:result?.data?.msg})
+
+    axios.get("/api/getAllUser").then((result) => {
+      setuserData(result?.data?.user)
+   })
+   
   }).catch((err) => {
     console.log(err?.response)
   });

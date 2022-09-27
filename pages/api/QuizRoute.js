@@ -14,7 +14,7 @@ export default async function QuizRoute(req, res) {
         }
 
         await Quiz.create({ question, option, CorrectAnswer, Batch, course, time }).then((result) => {
-            res.status(201).json({ "quiz": result })
+            res.status(201).json({ "quiz": result,"Success":true })
         }).catch((err) => {
             res.status(500).json({ "msg": err })
         });
