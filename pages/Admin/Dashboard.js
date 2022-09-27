@@ -26,7 +26,7 @@ const DashBoard = () => {
 
   useEffect(() => {
 
-    axios.get("http://localhost:3000/api/QuizRoute").then((result) => {
+    axios.get("/api/QuizRoute").then((result) => {
       setQuiz(result?.data?.quiz)
     }).catch((err) => {
       console.log(err?.response?.data)
@@ -62,13 +62,13 @@ const DashBoard = () => {
   const addQuiz = () => {
 
 if (Question && Answer1 && Answer2 && Answer3 && Answer4 && CorrectAnswer && Batch && Time && category) {
-    axios.post("http://localhost:3000/api/QuizRoute", {
+    axios.post("/api/QuizRoute", {
       "question": Question, "option": [Answer1, Answer2, Answer3, Answer4],
       "CorrectAnswer": CorrectAnswer, "Batch": Batch, "course": category, "time": Time
-    }).then((result) => {
+    }).then((result) => { 
         swal({text:"Question Has been Created"})
         setOpen(false)
-      axios.get("http://localhost:3000/api/QuizRoute").then((result) => {
+      axios.get("/api/QuizRoute").then((result) => {
       setQuiz(result?.data?.quiz)
     })
     }).catch((err) => {
