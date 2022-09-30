@@ -10,7 +10,5 @@ export default function middleware(req){
     if (verify && url === `${req?.nextUrl?.protocol}//${req?.nextUrl?.host}/Auth/Login`) {
       return NextResponse.redirect(`${req?.nextUrl?.protocol}//${req?.nextUrl?.host}/Student/Home`);
     }
-
-console.log(`${req?.nextUrl?.protocol}//${req?.nextUrl?.host}/Student/Home`)
 }
 
